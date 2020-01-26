@@ -1,6 +1,6 @@
 # prime-number-calculator
 
-> Find next prime number from number
+> Check if a number is a prime number. Made with Vue.js
 
 ## Build Setup
 
