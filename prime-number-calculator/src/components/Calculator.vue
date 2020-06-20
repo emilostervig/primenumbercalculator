@@ -44,7 +44,13 @@
 </template>
 
 <script>
+/*
+	TODO: Make a version with AKS test
+	TODO: Make a version with fermat's test
+	TODO: Change iterator to have callbacks, making it usable with multiple props.
 
+
+*/
 export default {
   	name: 'testcomp',
 	data () {
@@ -111,11 +117,12 @@ export default {
                 return false;
             }
 
-            // check if the number is too large
-            let root = Math.ceil(Math.sqrt( num ));
-            if(root > Number.MAX_SAFE_INTEGER){
+            // number is too large to calculate
+            if(!Number.isSafeInteger(parseInt(numnumber))){
+                this.isPrime = false;
+                this.calculating = false;
                 this.error = true;
-                this.errorMessage = "Your number is too large to calculate";
+                this.errorMessage = "the number you have written is too large to handle";
                 return false;
             }
 
@@ -134,14 +141,7 @@ export default {
             let max = root > current+batch ? current+batch : root; // Max value of initial loop. shouldn't go higher than sqrt of number
             this.currentlyTesting = current;
 
-            // number is too large to calculate
-            if(!Number.isSafeInteger(parseInt(number))){
-                this.isPrime = false;
-                this.calculating = false;
-                this.error = true;
-                this.errorMessage = "the number you have written is too large to handle";
-                return false;
-            }
+            
             // loop the current batch
             for(; current <= max; current += 2 ){
                 // if current is divisble stop function
